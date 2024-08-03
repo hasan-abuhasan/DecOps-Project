@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Fetch Source Code') {
             steps {
-                git branch: 'main', credentialsId: 'GitHubJuly', url: 'https://github.com/Endeathia/Devops-Project.git'
+                git branch: 'main', credentialsId: 'GitHubJuly', url: 'https://github.com/hasan-abuhasan/DevOps-Project.git'
             }
         }
 
@@ -50,7 +50,7 @@ pipeline {
         
         stage('Update Namespace') {
             steps {
-                sh 'kubectl config set-context --current --namespace=tamer'
+                sh 'kubectl config set-context --current --namespace=hasan'
             }
         }
     
@@ -61,7 +61,7 @@ pipeline {
                     sh '''
                     export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
                     export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-                    helm upgrade polybot Kubernetes/polybot -f Kubernetes/polybot/values.yaml
+                    helm upgrade polybot kubernates/polybot -f kubernates/polybot/values.yaml
                     '''
                 }
             }
@@ -73,7 +73,7 @@ pipeline {
                     sh '''
                     export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
                     export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-                    helm upgrade yolo5 Kubernetes/yolo5 -f Kubernetes/yolo5/values.yaml
+                    helm upgrade yolo5 kubernates/yolo5 -f kubernates/yolo5/values.yaml
                     '''
                 }
             }
@@ -105,7 +105,7 @@ post {
             emailext (
                 subject: "${jobName} - Build ${buildNumber} - ${pipelineStatus.toUpperCase()}",
                 body: body,
-                to: 'tamerjjeney279@gmail.com',
+                to: 'hasanlah1992@gamil.com',
                 from: 'jenkins@example.com',
                 replyTo: 'jenkins@example.com',
                 mimeType: 'text/html',
